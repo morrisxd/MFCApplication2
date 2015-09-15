@@ -51,6 +51,7 @@ END_MESSAGE_MAP()
 
 CMFCApplication2Dlg::CMFCApplication2Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_MFCAPPLICATION2_DIALOG, pParent)
+	, sayHelloText(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -59,6 +60,7 @@ void CMFCApplication2Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, textSayHello, txtSayHello);
+	DDX_Text(pDX, textSayHello, sayHelloText);
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
@@ -164,13 +166,18 @@ void CMFCApplication2Dlg::OnBnClickedbtnsayhello()
 	char buf[2014];
 	int n(0);
 
+	UpdateData();
 	n = txtSayHello.GetLine(0, buffer);
 	buffer[n] = 0;
 	this->MessageBox(
 #if 0
 		_T("Hello : ") +
 #endif // 0
-		buffer);
+#if 0
+		buffer
+#endif // 0
+		sayHelloText
+		);
 }
 
 

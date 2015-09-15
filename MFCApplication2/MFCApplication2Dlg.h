@@ -36,4 +36,5 @@ public:
 	afx_msg void OnBnClickedbtnsayhello();
 	CEdit txtSayHello;
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	CString sayHelloText;
 };
