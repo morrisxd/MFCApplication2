@@ -58,12 +58,15 @@ CMFCApplication2Dlg::CMFCApplication2Dlg(CWnd* pParent /*=NULL*/)
 void CMFCApplication2Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, textSayHello, txtSayHello);
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(btnSayHello, &CMFCApplication2Dlg::OnBnClickedbtnsayhello)
+	ON_WM_CHAR()
 END_MESSAGE_MAP()
 
 
@@ -152,3 +155,28 @@ HCURSOR CMFCApplication2Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CMFCApplication2Dlg::OnBnClickedbtnsayhello()
+{
+	// TODO: Add your control notification handler code here
+	TCHAR buffer[1024];
+	char buf[2014];
+	int n(0);
+
+	n = txtSayHello.GetLine(0, buffer);
+	buffer[n] = 0;
+	this->MessageBox(
+#if 0
+		_T("Hello : ") +
+#endif // 0
+		buffer);
+}
+
+
+void CMFCApplication2Dlg::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	CDialogEx::OnChar(nChar, nRepCnt, nFlags);
+}
